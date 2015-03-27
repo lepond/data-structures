@@ -58,4 +58,12 @@ describe('graph', function() {
     expect(graph.hasEdge('penguins', 'satsumas')).to.equal(true);
     expect(graph.hasEdge('satsumas', 'satsumas')).to.equal(true);
   });
+
+  it('should remove edges when a node is removed', function() {
+    graph.addNode('apples');
+    graph.addNode('satsumas');
+    graph.addEdge('satsumas', 'apples');
+    graph.removeNode('apples');
+    expect(graph.hasEdge('satsumas', 'apples')).to.equal(false);
+  });
 });

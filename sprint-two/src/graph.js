@@ -16,19 +16,22 @@ Graph.prototype.contains = function(node){
 };
 
 Graph.prototype.removeNode = function(node){
+  for (var key in this.nodes[node]) {
+    this.removeEdge(key, node);
+  }
   delete this.nodes[node];
 };
 
 Graph.prototype.hasEdge = function(fromNode, toNode){
-  if (this.nodes[fromNode][toNode] !== undefined) {
+  if (this.nodes[fromNode] !== undefined && this.nodes[fromNode][toNode] !== undefined) {
     return true;
   }
   return false;
 };
 
 Graph.prototype.addEdge = function(fromNode, toNode){
-  this.nodes[fromNode][toNode] = true;
-  this.nodes[toNode][fromNode] = true;
+  this.nodes[fromNode][toNode] = toNode;
+  this.nodes[toNode][fromNode] = fromNode;
 };
 
 Graph.prototype.removeEdge = function(fromNode, toNode){

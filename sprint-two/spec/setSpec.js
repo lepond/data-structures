@@ -24,4 +24,29 @@ describe('set', function() {
     expect(set.contains("Mel Gibson")).to.equal(false);
   });
 
+  it('should accept number values in sets', function(){
+    set.add(9);
+    set.add(123);
+    expect(set.contains(9)).to.equal(true);
+    expect(set.contains(123)).to.equal(true);
+  });
+
+  it('should remove number values in sets', function(){
+    set.add(9);
+    set.remove(9);
+    expect(set.contains(9)).to.equal(false);
+  });
+
+  it('should return the intersection of two sets as a new set', function(){
+    var set2 = Set();
+    set.add(9);
+    set.add("dogs");
+    set.add("cats");
+    set2.add(9);
+    set2.add("dogs");
+    set2.add("giraffes");
+    var result = JSON.stringify({"dogs":true, "9":true});
+    expect(JSON.stringify(set.intersects(set2)._storage)).to.equal(result);
+  });
+
 });
