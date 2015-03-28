@@ -36,8 +36,18 @@ BinarySearchTree.prototype.contains = function (value) {
 };
 
 BinarySearchTree.prototype.depthFirstLog = function (callback) {
-
+  // callback on value
+  callback(this.value);
+  if (this.left) {
+    this.left.depthFirstLog(callback);
+  }
+  if (this.right) {
+    this.right.depthFirstLog(callback);
+  }
 };
 /*
  * Complexity: What is the time complexity of the above functions?
+  insert = O(log(n))
+  contains = O(log(n))
+  depFirstLog = O(log(n))
  */

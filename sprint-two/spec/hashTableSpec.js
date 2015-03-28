@@ -29,6 +29,14 @@ describe('hashTable', function() {
     expect(hashTable.retrieve('Steven')).to.equal(null);
   });
 
+  it('should remove only one key when multiple are stored at the same index', function() {
+    hashTable.insert('act', '1');
+    hashTable.insert('cat', '2');
+    hashTable.remove('cat');
+    expect(hashTable.retrieve('act')).to.equal('1');
+    expect(hashTable.retrieve('cat')).to.equal(null);
+  });
+
   it('should handle hash function collisions', function(){
     var v1 = "val1";
     var v2 = "val2";
